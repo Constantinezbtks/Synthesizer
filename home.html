@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synthesizer Project</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js"></script>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="home.css">
+    <!-- <script src="http://unpkg.com/tone"></script> -->
+</script>
+</head>
+<body>
+    <h1>Synthesizer</h1>
+
+    <!-- Νότες -->
+    <div id="piano">
+        <div class="white-key" data-note="C3">Z</div>
+        <div class="black-key" data-note="C#3">S</div>
+        <div class="white-key" data-note="D3">X</div>
+        <div class="black-key" data-note="D#3">D</div>
+        <div class="white-key" data-note="E3">C</div>
+        <div class="white-key" data-note="F3">V</div>
+        <div class="black-key" data-note="F#3">G</div>
+        <div class="white-key" data-note="G3">B</div>
+        <div class="black-key" data-note="G#3">H</div>
+        <div class="white-key" data-note="A3">N</div>
+        <div class="black-key" data-note="A#3">J</div>
+        <div class="white-key" data-note="B3">M</div>
+        <div class="white-key" data-note="C4">Q</div>
+        <div class="black-key" data-note="C#4">2</div>
+        <div class="white-key" data-note="D4">W</div>
+        <div class="black-key" data-note="D#4">3</div>
+        <div class="white-key" data-note="E4">E</div>
+        <div class="white-key" data-note="F4">R</div>
+        <div class="black-key" data-note="F#4">5</div>
+        <div class="white-key" data-note="G4">T</div>
+        <div class="black-key" data-note="G#4">6</div>
+        <div class="white-key" data-note="A4">Y</div>
+        <div class="black-key" data-note="A#4">7</div>
+        <div class="white-key" data-note="B4">U</div>
+        <div class="white-key" data-note="C5">I</div>
+    </div>
+        
+    
+    <!-- Slider Controls -->
+    
+    <div class = "slider">
+        <label>Gain:</label>
+        <input type="range" min="-80" max="80" value="0" id="gainSlider">
+        <label>Detune: </label>
+        <input type="range" min="-100" max="100" value="0" id="detuneSlider">
+        <label>Harmonicity: </label>
+        <input type="range" min="0" max="3" value="1.1" id="harmonicitySlider">
+
+        <!-- Oscillator Controls -->
+        <label for="waveform"><br><br>OSC1:</label>
+        <select id="waveform">
+            <option value="sine">Sine</option>
+            <option value="triangle">Triangle</option>
+            <option value="square">Square</option>
+            <option value="sawtooth">Sawtooth</option>
+        </select>
+        
+        <label for="modulation">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp OSC2:</label>
+            <select id="modulation">
+                <option value="disabled">Disabled</option>
+                <option value="sine">Sine</option>
+                <option value="triangle">Triangle</option>
+                <option value="square">Square</option>
+                <option value="sawtooth">Sawtooth</option>
+            </select>
+        
+        
+            <!--ADSR Sliders-->
+            <label><br>Attack: </label>
+            <input type="range" min="0" max="100" value="50" id="attackSlider">
+            <label> &nbsp &nbspAttack: </label>
+            <input type="range" min="0" max="100" value="50" id="MattackSlider">
+            
+            <label><br>Release: </label>
+            <input type="range" min="0" max="100" value="50" id="releaseSlider">
+            <label>Release: </label>
+            <input type="range" min="0" max="100" value="50" id="MreleaseSlider">
+
+            <label><br>Decay: </label>
+            <input type="range" min="0" max="100" value="0" id="decaySlider">
+            <label> &nbsp &nbspDecay: </label>
+            <input type="range" min="0" max="100" value="0" id="MdecaySlider">
+
+            <label><br>Sustain: </label>
+            <input type="range" min="0" max="100" value="0" id="sustainSlider">
+            <label> &nbspSustain: </label>
+            <input type="range" min="0" max="100" value="0" id="MsustainSlider">
+        
+        <!--Filters Sliders-->
+        <br>
+        <br>
+        <select id="filterType">
+            <option value="lowpass">Low Pass</option>
+            <option value="highpass">High Pass</option>
+        </select>
+        <input type="range" min="0" max="20000" value="20000" id="filterSlider">
+        <label>(0 to 20000Hz) </label>
+
+        <br>
+        <label>LFO: </label>
+        <select id="FrequencyRange">
+            <option value="lowEnd">Low End</option>
+            <option value="highEnd">High End</option>
+        </select>
+        <input type="range" min="0" max="20000" value="20000" id="LFOSlider">
+        <label>(0 to 20000Hz) </label>
+
+    </div>
+
+    
+
+    <!-- Effects Controls -->
+
+    <label for="effectType"><br></label>
+    <select id="effectType">
+        <option value="delay">Delay</option>
+        <option value="reverb">Reverb</option>
+        <option value = "distortion">Distortion</option>
+        <option value = "wah">Wah</option>
+        <input type="range" min="0" max="80" value="0" id="effectSlider">
+        <label>(Dry - Wet) </label>
+    </select>
+
+    <!-- Preset Controls -->
+    <label for="presetType"><br><br>Presets:</label>
+    <select id="presetType">
+        <option value="default">Default</option>
+        <option value="808">808</option>
+        <option value="sub">Sub Bass</option>
+        <option value="elPiano1">Electric Piano 1</option>
+        <option value="elPiano2">Electric Piano 2</option>
+        <option value="synth">Synth</option>
+        <option value="sineWheepy">Sine Wheepy</option>
+        <option value="whistle">Whistle</option>
+    </select>
+
+    <!-- Sound Toggle Button -->
+    <br>
+    <br>
+    <button id="soundToggle">Mute/Unmute</button> 
+
+    <!-- Reset Values Button -->
+    <button id="resetValues">Reset</button> 
+
+</body>
+</html>
